@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meow-tivator: Tugas & Keuangan Kucing Pink</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+       <h1><i class="fas fa-cat"></i> Meow-tivator Dashboard</h1>
+        
+        <div class="theme-picker">
+            <label>Ganti Tema:</label>
+            <button class="theme-btn" data-theme="pink" title="Pink Awal"></button>
+            <button class="theme-btn" data-theme="blue" title="Biru"></button>
+            <button class="theme-btn" data-theme="gray" title="Abu"></button>
+            <button class="theme-btn" data-theme="green" title="Hijau"></button>
+            <button class="theme-btn" data-theme="yellow" title="Kuning"></button>
+        </div>
+        <div class="tabs">
+            </div>
+       
+
+        
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="tugas">🐾 Tugas & Alarm</button>
+            <button class="tab-btn" data-tab="keuangan">💰 Keuangan Kucing</button>
+        </div>
+
+        <div id="tugas" class="tab-content active">
+            <h2>Pasang Alarm Tugas</h2>
+            <div class="alarm-controls">
+                <input type="time" id="alarmTime" required>
+                <button id="setAlarmBtn" class="primary-btn"><i class="fas fa-bell"></i> Set Alarm</button>
+                <button id="clearAlarmBtn" class="secondary-btn" style="display:none;"><i class="fas fa-times"></i> Hapus Alarm</button>
+                <p id="alarmStatus" class="status">Alarm tidak aktif.</p>
+            </div>
+            
+            <hr>
+
+            <h2>Daftar Tugas Anda</h2>
+            <form id="taskForm">
+                <input type="text" id="taskInput" placeholder="Contoh: Beli makanan kucing 🐟" required>
+                <input type="date" id="taskDate" required>
+                <button type="submit" class="primary-btn"><i class="fas fa-paw"></i> Catat Tugas</button>
+            </form>
+            <ul id="taskList">
+                </ul>
+        </div>
+
+        <div id="keuangan" class="tab-content">
+            <h2>Catatan Keuangan</h2>
+            <form id="financeForm">
+                <input type="text" id="financeDesc" placeholder="Contoh: Beli mainan laser 💖" required>
+                <input type="number" id="financeAmount" placeholder="Jumlah (Rp)" required min="1">
+                <select id="financeType" required>
+                    <option value="income">Pemasukan (+)</option>
+                    <option value="expense">Pengeluaran (-)</option>
+                </select>
+                <button type="submit" class="primary-btn"><i class="fas fa-wallet"></i> Simpan Catatan</button>
+            </form>
+
+            <div class="finance-summary">
+                Saldo Bersih: <span id="currentBalance" class="income-text">Rp 0</span>
+            </div>
+            <ul id="financeList">
+                </ul>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    
+    <script>
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
